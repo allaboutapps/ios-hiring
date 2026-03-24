@@ -2,6 +2,7 @@ import Foundation
 
 struct Ingredient: Identifiable, Comparable, Hashable {
     let name: String
+    let isVegan: Bool
     let id: UUID
     
     static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
@@ -11,8 +12,8 @@ struct Ingredient: Identifiable, Comparable, Hashable {
 
 extension Ingredient {
     static let mockData = [
-        Ingredient(name: "Tomato", id: UUID()),
-        Ingredient(name: "Potato", id: UUID()),
-        Ingredient(name: "Cheese", id: UUID()),
+        Ingredient(name: "Tomato", isVegan: true, id: UUID()),
+        Ingredient(name: "Potato", isVegan: true, id: UUID()),
+        Ingredient(name: "Cheese", isVegan: false, id: UUID()),
     ]
 }

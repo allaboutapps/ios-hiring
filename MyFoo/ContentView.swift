@@ -8,7 +8,9 @@ struct CreateRecipeScreen: View {
     var store = StoreOf<CreateRecipeFeature>(initialState: CreateRecipeFeature.State()) {
         CreateRecipeFeature()
     }
-
+    @State private var selectedIngredient: Ingredient? = nil
+    
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -16,14 +18,29 @@ struct CreateRecipeScreen: View {
                     Text(.createRecipeNameLabel)
                 }
                 
-                Section {
+                Picker("Select your Ingredient", selection: $selectedIngredient) {
                     ForEach(store.ingredients.sorted()) { ingredient in
-                        Text(ingredient.name)
+                        IngredientRow(ingredient: ingredient)
+                            .tag(ingredient)
                     }
                 }
+                .pickerStyle(.inline)
             }
             .navigationTitle(.createRecipeTitle)
             .onAppear { send(.onAppear) }
+        }
+    }
+}
+
+struct IngredientRow: View {
+    let ingredient: Ingredient
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(ingredient.name)
+                .foregroundStyle(Color.black)
+            Text(ingredient.isVegan ? "Is Vegan" : "Is not vegan")
+                .foregroundStyle(Color.gray)
         }
     }
 }
