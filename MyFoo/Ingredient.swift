@@ -1,6 +1,6 @@
 import Foundation
 
-struct Ingredient: Identifiable, Comparable {
+struct Ingredient: Identifiable, Comparable, Hashable {
     let name: String
     let id: UUID
     
