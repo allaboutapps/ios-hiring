@@ -15,7 +15,7 @@ struct CreateRecipeScreen: View {
                 }
                 
                 Section {
-                    ForEach(store.ingredients) { ingredient in
+                    ForEach(store.ingredients.sorted()) { ingredient in
                         Text(ingredient.name)
                     }
                 }

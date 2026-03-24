@@ -1,8 +1,12 @@
 import Foundation
 
-struct Ingredient: Identifiable {
+struct Ingredient: Identifiable, Comparable {
     let name: String
     let id: UUID
+    
+    static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
+            return lhs.name < rhs.name
+    }
 }
 
 extension Ingredient {
